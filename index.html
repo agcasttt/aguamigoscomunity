@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaForma — Aguamigos</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <a href="#proyecto">Proyecto</a>
+  <a href="#nacimientos">Nacimientos de Agua</a>
+  <a href="#reportar">Reportar</a>
+  <a href="#galeria">Galería</a>
+  <a href="#arte">Laboratorio</a>
+</nav>
+
+<header>
+  <div class="hero">
+    <div class="tag">ODS 6 · Agua Limpia · Artes Plásticas</div>
+    <h1>Agua<span>migos</span></h1>
+    <p>
+      Una experiencia artística e interactiva para observar, documentar y transformar la relación con el agua. Registra problemas ambientales e integra su ubicación georreferenciada.
+    </p>
+    <a href="#reportar"><button class="primary">Crear un reporte</button></a>
+  </div>
+</header>
+
+<main>
+<section id="proyecto">
+  <div class="section-title">
+    <h2>Concepto</h2><small>Arte + Programación + Agua</small>
+  </div>
+  <div class="grid">
+    <article class="card">
+      <div class="number">01</div>
+      <h3>Observar</h3>
+      <p>Explora tu entorno: identifica fugas, vertederos, agua contaminada o áreas en riesgo.</p>
+    </article>
+    <article class="card">
+      <div class="number">02</div>
+      <h3>Ubicar</h3>
+      <p>Guarda la dirección o coordenadas para consultarlas directamente en Google Maps.</p>
+    </article>
+    <article class="card">
+      <div class="number">03</div>
+      <h3>Fluir (Interpretar)</h3>
+      <p>Representa la energía del agua mediante algoritmos de movimiento y trazos orgánicos.</p>
+    </article>
+  </div>
+</section>
+
+<!-- SECCIÓN AGREGADA: NACIMIENTOS DE AGUA EN MÉXICO -->
+<section id="nacimientos">
+  <div class="section-title">
+    <h2>Nacimientos de Agua en México</h2><small>Manantiales y Ojos de Agua</small>
+  </div>
+  
+  <div class="card" style="margin-top:20px;">
+    <h3>Selecciona un Estado</h3>
+    <p>Encuentra los nacimientos de agua naturales más destacados de la región, su geolocalización exacta y las acciones necesarias para su cuidado ambiental.</p>
+    
+    <label for="select-estado" style="color:var(--azul-profundo)">Estado:</label>
+    <select id="select-estado" onchange="mostrarNacimientos()" style="background:#f0f7f9; color:var(--marino); border-color:var(--azul-medio);">
+      <option value="">-- Elige un Estado --</option>
+      <option value="Puebla">Puebla</option>
+      <option value="Veracruz">Veracruz</option>
+      <option value="Michoacan">Michoacán</option>
+      <option value="Chiapas">Chiapas</option>
+      <option value="Oaxaca">Oaxaca</option>
+      <option value="San Luis Potosi">San Luis Potosí</option>
+      <option value="Estado de Mexico">Estado de México</option>
+      <option value="Morelos">Morelos</option>
+      <option value="Yucatan">Yucatán (Cenotes)</option>
+      <option value="Quintana Roo">Quintana Roo</option>
+      <option value="Jalisco">Jalisco</option>
+    </select>
+  </div>
+
+  <div id="nacimientos-contenedor" class="nacimientos-grid">
+    <div class="card" style="grid-column: 1/-1;">
+      <p>👈 Selecciona un estado para explorar los nacimientos de agua más cercanos y aprender a protegerlos.</p>
+    </div>
+  </div>
+</section>
+
+<section id="reportar">
+  <div class="section-title">
+    <h2>Nuevo reporte</h2><small>Georreferenciación</small>
+  </div>
+  <div class="app">
+    <div class="panel">
+      <h2>Haz visible el problema</h2>
+      <p>Sube una evidencia visual e ingresa una ubicación o coordenadas exactas.</p>
+
+      <label for="titulo">Título de la observación</label>
+      <input id="titulo" placeholder="Ej. Filtración en Río Atoyac">
+
+      <label for="categoria">Categoría</label>
+      <select id="categoria">
+        <option>Fuga / Desperdicio</option>
+        <option>Contaminación Química/Orgánica</option>
+        <option>Desechos en cuerpos de agua</option>
+        <option>Saneamiento e Infraestructura</option>
+        <option>Cuerpo de agua amenazado</option>
+      </select>
+
+      <label for="ubicacion">Ubicación o Coordenadas</label>
+      <input id="ubicacion" placeholder="Ej. Calle 5 de Mayo, Puebla O 19.0414, -98.2063">
+      <div class="location-row">
+        <button type="button" class="secondary" onclick="usarUbicacionActual()">📍 Usar mi ubicación GPS</button>
+      </div>
+
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" placeholder="¿Qué observaste? Contexto y notas artísticas..."></textarea>
+
+      <label for="foto">Imagen / Evidencia</label>
+      <input id="foto" type="file" accept="image/*">
+      <img id="preview" class="preview" alt="Vista previa">
+
+      <button class="primary" onclick="crearReporte()">Publicar Reporte</button>
+      <button class="secondary" onclick="limpiarFormulario()">Limpiar</button>
+    </div>
+
+    <div>
+      <div class="card">
+        <h3>Estadística del archivo</h3>
+        <p><b>Entrada:</b> Imagen + Geolocalización → <b>Salida:</b> Enlace Directo a Google Maps.</p>
+        <div class="stat" id="contador">0</div>
+        <p>reportes registrados</p>
+        <div class="bar"><span id="barra"></span></div>
+        <p class="tiny">Los datos se almacenan localmente en el navegador para este Prototipo Artístico.</p>
+      </div>
+
+      <div class="card" style="margin-top:20px">
+        <h3>Arco narrativo</h3>
+        <p><b>Problema → Evidencia → Mapa Externo → Conciencia visual.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria">
+  <div class="section-title">
+    <h2>Galería de reportes</h2><small>Archivo visual de la comunidad</small>
+  </div>
+  <div id="reports" class="reports"></div>
+</section>
+
+<section id="arte">
+  <div class="section-title">
+    <h2>Espacio de expresión artística</h2><small>Simulación y Fluidez</small>
+  </div>
+  <div class="app">
+    <div class="card">
+      <h3>¡Deja tu huella!</h3>
+      <p>Genera composiciones inspiradas en la dinámica de fluidos: ondas, corrientes, salpicaduras y patrones de difusión.</p>
+      
+      <div class="tools-bar">
+        <div class="tools">
+          <button class="secondary active" id="btn-linea" onclick="setModo('linea')">Flujo</button>
+          <button class="secondary" id="btn-onda" onclick="setModo('onda')">Ondas</button>
+          <button class="secondary" id="btn-gota" onclick="setModo('gota')">Gotas/Ondulaciones</button>
+          <button class="secondary" id="btn-spray" onclick="setModo('spray')">Salpicadura</button>
+          <button class="secondary" id="btn-trama" onclick="setModo('trama')">Tramas</button>
+        </div>
+
+        <div class="canvas-controls">
+          <label style="margin:0; color:#1c2d37">Color:</label>
+          <input type="color" id="pincel-color" value="#90e0ef">
+          <label style="margin:0; color:#1c2d37">Grosor:</label>
+          <input type="range" id="pincel-grosor" min="1" max="25" value="3">
+        </div>
+
+        <div class="tools">
+          <button class="secondary" onclick="limpiarCanvas()">Borrar Lienzo</button>
+          <button class="secondary" onclick="descargarCanvas()">Descargar PNG</button>
+          <button class="primary" onclick="abrirModalArte()">🚀 Publicar Arte en Galería</button>
+        </div>
+      </div>
+      <p class="tiny">El lienzo utiliza algoritmos sinusoidales e interacciones matemáticas que reaccionan a la velocidad del trazo.</p>
+    </div>
+    
+    <div class="artboard-wrap">
+      <canvas id="canvas" width="700" height="450"></canvas>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Modal para Publicar Dibujo directamente -->
+<div id="modalArte" class="modal">
+  <div class="modal-content">
+    <h2 style="margin-top:0; color:var(--turquesa)">Publicar Pieza de Arte</h2>
+    <p>Asigna detalles para subir tu dibujo a la galería de reportes:</p>
+    
+    <label for="arte-titulo">Título de la Obra</label>
+    <input id="arte-titulo" placeholder="Ej. Abstracción del flujo dañado">
+
+    <label for="arte-categoria">Categoría</label>
+    <select id="arte-categoria">
+      <option>Interpretación Artística</option>
+      <option>Fuga / Desperdicio</option>
+      <option>Contaminación Química/Orgánica</option>
+      <option>Desechos en cuerpos de agua</option>
+    </select>
+
+    <label for="arte-ubicacion">Ubicación / Lugar</label>
+    <input id="arte-ubicacion" placeholder="Ej. Laboratorio Visual / Puebla">
+
+    <label for="arte-descripcion">Notas o Reflexión</label>
+    <textarea id="arte-descripcion" style="min-height:80px" placeholder="Inspiración o problemática expresada en la obra..."></textarea>
+
+    <div style="display:flex; gap:10px">
+      <button class="primary" style="flex:1" onclick="publicarArteLienzo()">Publicar Ahora</button>
+      <button class="secondary" onclick="cerrarModalArte()">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <h2>Aguamigos</h2>
+  <p>Proyecto conceptual para Programación para Artistas I · Licenciatura en Artes Plásticas.</p>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

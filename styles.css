@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+:root{
+  --agua: #00b4d8; 
+  --azul-profundo: #03045e; 
+  --azul-medio: #0077b6;
+  --turquesa: #90e0ef; 
+  --marino: #102a43;
+  --fondo-fresco: #f0f7f9; 
+  --blanco: #ffffff;
+  --texto: #1c2d37;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo-fresco);color:var(--texto);font-family:Arial,Helvetica,sans-serif}
+
+header{
+  min-height:60vh; display:flex; align-items:center; padding:6vw;
+  position:relative; overflow:hidden;
+  background:
+    radial-gradient(circle at 80% 20%, rgba(144, 224, 239, 0.45), transparent 40%),
+    linear-gradient(135deg, #e0f4f7 0%, #a2d9e7 50%, #0077b6 100%);
+}
+header:before, header:after{
+  content:"";position:absolute;border:2px solid rgba(255, 255, 255, 0.35);
+  border-radius:50%;transform:rotate(-14deg); pointer-events: none;
+}
+header:before{width:52vw;height:18vw;right:-10vw;bottom:8vw}
+header:after{width:42vw;height:14vw;right:2vw;bottom:4vw}
+
+.hero{max-width:900px;position:relative;z-index:2; color: var(--marino)}
+.tag{display:inline-block;border:1px solid var(--azul-medio);padding:8px 12px;
+     letter-spacing:.12em;text-transform:uppercase;font-size:.75rem; background: rgba(255,255,255,0.6); backdrop-filter: blur(4px)}
+h1{font-family:Georgia,serif;font-size:clamp(3rem,8vw,7rem);line-height:.9;margin:20px 0 14px;color:var(--azul-profundo)}
+h1 span{color:var(--agua);font-style:italic}
+.hero p{font-size:1.15rem;max-width:700px;line-height:1.6; color: var(--marino)}
+
+nav{position:absolute;right:5vw;top:28px;z-index:3}
+nav a{color:var(--azul-profundo);text-decoration:none;margin-left:18px;font-weight:bold;font-size:.9rem; transition: color 0.2s}
+nav a:hover{color:var(--agua)}
+
+main{max-width:1180px;margin:auto;padding:70px 5vw}
+section{margin-bottom:90px}
+.section-title{display:flex;align-items:end;gap:15px;border-bottom:2px solid var(--azul-medio);padding-bottom:12px}
+.section-title h2{font-family:Georgia,serif;font-size:2.3rem;margin:0;color:var(--azul-profundo)}
+.section-title small{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em; color: var(--azul-medio)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px;margin-top:28px}
+.card{background:var(--blanco);padding:25px;border:1px solid #cce3de;box-shadow:8px 8px 0 rgba(3, 4, 94, 0.08); border-radius: 4px}
+.card h3{margin-top:0;color:var(--azul-medio)}
+.number{font-family:Georgia,serif;font-size:2.5rem;color:var(--agua)}
+
+.app{display:grid;grid-template-columns:1fr 1.1fr;gap:30px}
+@media(max-width:800px){.app{grid-template-columns:1fr}nav{position:static;padding:18px 5vw}.hero{padding-top:30px}}
+
+.panel{background:var(--marino);color:white;padding:30px;border-radius:6px; box-shadow: 0 10px 20px rgba(0,0,0,0.1)}
+.panel h2{font-family:Georgia,serif;font-size:2.5rem;margin-top:0; color: var(--turquesa)}
+label{display:block;margin:16px 0 7px;font-weight:bold; color: #d0e8f2}
+input,textarea,select{width:100%;padding:13px;border:1px solid #205072;background:#091e30;color: #fff;font:inherit; border-radius: 4px}
+input:focus,textarea:focus,select:focus{outline: 2px solid var(--agua)}
+textarea{min-height:120px;resize:vertical}
+
+button, .btn-link{display:inline-block; text-decoration:none; text-align:center; border:0;padding:13px 18px;font-weight:bold;cursor:pointer;margin-top:15px; border-radius: 4px; transition: 0.2s transform, 0.2s background}
+button:active, .btn-link:active{transform: scale(0.98)}
+.primary{background:var(--agua);color:var(--azul-profundo)}
+.primary:hover{background:#38b6ff}
+.secondary{background:#d0e8f2;color:var(--azul-profundo)}
+.secondary:hover{background:#b2d8e8}
+
+.preview{margin-top:15px;max-width:100%;max-height:250px;display:none;border:2px solid var(--turquesa); border-radius: 4px}
+.reports{display:grid;gap:15px}
+.report{background:var(--blanco);border-left:7px solid var(--agua);padding:18px;display:grid;grid-template-columns:110px 1fr;gap:18px; box-shadow: 4px 4px 10px rgba(0,0,0,0.03)}
+.report img{width:110px;height:90px;object-fit:cover;background:#dceef0; border-radius: 4px}
+.report h3{margin:0 0 5px; color: var(--azul-profundo)}
+.status{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--azul-medio);font-weight:bold}
+.report-actions{display:flex; gap:10px; margin-top:10px;}
+
+/* Estilos Sección Nacimientos de Agua */
+.nacimientos-grid{display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:22px; margin-top:25px;}
+.nacimiento-card{background: var(--blanco); border-top: 5px solid var(--azul-medio); padding:20px; border-radius:6px; box-shadow:0 4px 12px rgba(0,0,0,0.05);}
+.nacimiento-card h3{color:var(--azul-profundo); margin-top:0; margin-bottom:8px;}
+.nacimiento-card .ubicacion-tag{font-size:.85rem; color:var(--azul-medio); font-weight:bold; margin-bottom:12px; display:block;}
+.recomendaciones-list{background: var(--fondo-fresco); padding:12px 15px 12px 30px; border-radius:4px; font-size:.9rem; margin:15px 0 10px;}
+.recomendaciones-list li{margin-bottom:6px;}
+
+/* Laboratorio de Dibujo */
+.artboard-wrap{background:#003459;padding:18px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.15)}
+canvas{width:100%;display:block;background:#02111b;cursor:crosshair; border-radius: 4px}
+.tools-bar{display:flex; flex-direction: column; gap:10px; margin-bottom: 12px;}
+.tools{display:flex;gap:8px;flex-wrap:wrap;}
+.tools button{margin:0; font-size: 0.85rem;}
+.tools button.active{outline: 2px solid var(--turquesa); background: var(--azul-profundo); color: white;}
+.canvas-controls{display: flex; gap: 12px; align-items: center; color: white; font-size: 0.85rem; background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 4px;}
+.canvas-controls input[type="color"]{width:30px; height: 30px; padding: 0; border: none; cursor: pointer; background: none;}
+
+.stat{font-size:3rem;font-family:Georgia,serif;color:var(--agua)}
+.bar{height:12px;background:#d0e8f2;margin:10px 0 25px; border-radius: 6px; overflow: hidden;}
+.bar span{display:block;height:100%;background:var(--agua);width:0;transition:.5s}
+
+/* Ventana Modal para Publicar Dibujo */
+.modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(3, 4, 94, 0.7); backdrop-filter:blur(4px); z-index:10; justify-content:center; align-items:center;}
+.modal-content{background:var(--marino); color:white; padding:30px; border-radius:8px; max-width:500px; width:90%; box-shadow: 0 10px 25px rgba(0,0,0,0.3);}
+
+footer{padding:45px 5vw;background:var(--marino);color:white}
+.tiny{font-size:.82rem;line-height:1.5;opacity:.85}
